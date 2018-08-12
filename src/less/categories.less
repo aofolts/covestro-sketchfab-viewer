@@ -1,0 +1,29 @@
+@import 'vars.less';
+
+.wrap {
+  width: 100%;
+  max-width: 100rem;
+  margin: 0 auto;
+  display: flex;
+
+  @media screen and (max-width:767px) {
+    display: block;
+  }
+}
+
+.image {
+  width: 100%;
+}
+
+.card {
+  border: 1px solid @dgrey;
+  padding: @m;
+  margin: var(--h);
+  text-align: center;
+  cursor: pointer;
+
+  &:hover {
+    border-color: @blue;
+    color: @blue;
+  }
+}

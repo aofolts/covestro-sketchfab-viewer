@@ -1,0 +1,27 @@
+@import 'vars.less';
+
+.header {
+  text-align: center;
+  margin: @m auto;
+  padding: 0 @m;
+  cursor: pointer;
+}
+
+.logo {
+  width: @xl;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+.subCategoriesHeader {
+  display: flex;
+  justify-content: space-between;
+
+  .logo {
+    width: @l;
+    align-self: center;
+  }
+}
+
