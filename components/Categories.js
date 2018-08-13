@@ -6,25 +6,29 @@ class Categories extends React.Component {
 
   constructor(props) {
     super(props)
+
+    const boundMethods = [
+      'handleClick',
+    ]
+
+    boundMethods.forEach(method => this[method] = this[method].bind(this))
+  }
+
+  handleClick() {
+    this.props.context.setView('subCategories')
   }
 
   render() {
-    const cats = [
-      {
-        name: 'Cylindrical Cells',
-        image: 'cylindrical-cells.jpg'
-      },
-      {
-        name: 'Pouch Cells',
-        image: 'pouch-cells.jpg'
-      }
-    ]
+    const cats = this.props.context.items
   
     const catsEl = cats.map(cat => {
+      const {name,image} = cat.fields,
+            {id}   = cat.sys
+
       return (
-        <div key={cat.name} className={css.card} onClick={() => this.props.context.setView('subCategories')}>
-          <h3>{cat.name}</h3>
-          <img className={css.image} src={`/static/img/${cat.image}`}/>
+        <div key={id} className={css.card} onClick={this.handleClick}>
+          <h3>{name}</h3>
+          <img className={css.image} src={image.fields.file.url}/>
         </div>
       )
     })
