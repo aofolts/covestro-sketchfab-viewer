@@ -1,28 +1,34 @@
 import React from 'react'
 import css from '../src/less/categories.less'
 import {withAppContext} from '../components/AppContext'
-import PropTypes from 'prop-types'
 
-class Categories extends React.Component {
+class SubCategories extends React.Component {
 
   constructor(props) {
     super(props)
 
     const boundMethods = [
+      'handleClick',
     ]
 
     boundMethods.forEach(method => this[method] = this[method].bind(this))
   }
 
+  handleClick() {
+    this.props.context.setView('subCategories')
+  }
+
   render() {
-    const cats = this.props.context.items
+    const context   = this.props.context,
+          parentCat = context.category,
+          cats      = parentCat.fields.subMenu
   
     const catsEl = cats.map(cat => {
-      const {id,name,image} = cat,
-            setCategory = this.props.context.setCategory
+      const {name,image} = cat.fields,
+            {id}   = cat.sys
 
       return (
-        <div key={id} className={css.card} onClick={() => setCategory(cat)}>
+        <div key={id} className={css.card} onClick={this.handleClick}>
           <h3>{name}</h3>
           <img className={css.image} src={image.fields.file.url}/>
         </div>
@@ -39,4 +45,4 @@ class Categories extends React.Component {
   }
 }
 
-export default withAppContext(Categories)
+export default withAppContext(SubCategories)

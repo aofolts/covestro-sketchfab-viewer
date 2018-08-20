@@ -9,7 +9,7 @@ function withAppContext(Component) {
     return (
       <AppContext.Consumer>
         {value => <Component {...props} context={value} />}
-      </AppContext.Consumer>
+      </AppContext.Consumer> 
     )
   }
 }
